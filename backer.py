@@ -61,9 +61,9 @@ def download_track():
 def play_track():
     try:
         filename = request.form['filename']
-        webbrowser.open(app.config['TRACKS_DIR'] + "/" + filename)
+        webbrowser.open("file://" + os.path.abspath(app.config['TRACKS_DIR'] + "/" + filename))
 
-        return jsonify(status='ok', message='Playing ' + filepath)
+        return jsonify(status='ok', message='Playing ' + filename)
 
     except Exception,e:
         return jsonify(status='error', message=str(e))
